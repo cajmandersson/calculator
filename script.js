@@ -18,7 +18,6 @@ displayButtons.forEach(button => {
         }
         calculationValues.push(button.id);
         storeValue(button.id)
-        btnFeedback(button.id);
     });
 });
 
@@ -51,6 +50,7 @@ eraseButton.addEventListener('click', () => eraseValue());
 function eraseValue() {
     if (calculationValues.length > 1) {
         calculationValues.pop();
+        numberValues.pop();
         displayValues();
     } else {
         clear();
@@ -80,6 +80,9 @@ const displayValues = () => {
 }
 
 const calculate = (id) => {
+    if (numberValues.length < 2) {
+        return;
+    }
     storeValue(id)
 
     let sum = 0;
